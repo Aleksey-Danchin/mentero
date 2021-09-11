@@ -1,0 +1,16 @@
+FROM node:16
+
+WORKDIR /app
+USER root
+COPY package*.json ./
+COPY . .
+
+ENV NODE_ENV=development
+
+RUN npm install
+RUN npm install -g @babel/cli @babel/core @babel/node nodemon
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["nodemon", "--exec", "babel-node", "index.js"]

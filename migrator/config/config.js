@@ -1,0 +1,32 @@
+module.exports = {
+	default: {
+		username: "postgres",
+		database: process.env.POSTGRES_DATABASE,
+		password: process.env.POSTGRES_PASSWORD,
+		host: "db",
+		dialect: "postgres",
+		seederStorage: "json",
+		seederStoragePath: "sequelizeData.json",
+		seederStorageTableName: "sequelize_data",
+	},
+	production: {
+		username: "postgres",
+		database: process.env.POSTGRES_DATABASE,
+		password: process.env.POSTGRES_PASSWORD,
+		host: "db",
+		dialect: "postgres",
+		seederStorage: "json",
+		seederStoragePath: "sequelizeData.json",
+		seederStorageTableName: "sequelize_data",
+	},
+	development: {
+		username: "postgres",
+		database: process.env.POSTGRES_DATABASE,
+		password: process.env.POSTGRES_PASSWORD,
+		host: "db",
+		dialect: "postgres",
+		seederStorage: "json",
+		seederStoragePath: "sequelizeData.json",
+		seederStorageTableName: "sequelize_data",
+	},
+};

@@ -1,0 +1,14 @@
+{
+	"name": "mentero",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "docker-compose -f development.yml --env-file .env up",
+		"down": "docker-compose -f development.yml down"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

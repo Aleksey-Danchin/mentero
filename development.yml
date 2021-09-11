@@ -1,0 +1,59 @@
+version: "3.1"
+
+services:
+    server_dev:
+        build:
+            context: ./server
+            dockerfile: Dockerfile.dev
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - 443:443
+            - 8080:80
+        volumes:
+            - ./server:/app/
+            - ./migrator:/app/database
+            - /app/node_modules
+        environment:
+            - POSTGRES_HOST=db
+            - POSTGRES_PORT=5432
+            - POSTGRES_USERNAME=postgres
+            - POSTGRES_PASSWORD
+            - POSTGRES_DATABASE
+
+    migrator:
+        build:
+            context: ./migrator
+            dockerfile: Dockerfile
+        restart: always
+        depends_on:
+            - db
+        volumes:
+            - ./migrator:/app/
+            - /app/node_modules
+        environment:
+            - POSTGRES_HOST=db
+            - POSTGRES_PORT=5432
+            - POSTGRES_USERNAME=postgres
+            - POSTGRES_PASSWORD
+            - POSTGRES_DATABASE
+        stdin_open: true
+        tty: true
+
+    adminer:
+        image: adminer
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - 8085:8080
+
+    db:
+        image: postgres:13
+        restart: always
+
+        environment:
+            - POSTGRES_PASSWORD
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
